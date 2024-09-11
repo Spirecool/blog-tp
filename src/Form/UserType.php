@@ -23,6 +23,7 @@ class UserType extends AbstractType
                 'expanded' => true,
             ])
             ->add('password')
+            ->add('isVerified')
         ;
     }
 

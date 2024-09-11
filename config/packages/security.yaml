@@ -20,6 +20,14 @@ security:
             lazy: true
             provider: app_user_provider
             custom_authenticator: App\Security\LoginFormAuthenticator
+            entry_point: App\Security\LoginFormAuthenticator
+            form_login:
+                login_path: login
+                check_path: login
+                enable_csrf: true
+            login_throttling:
+                    max_attempts: 3            # Nombre maximal de tentatives de connexion
+                    interval: '5 minutes'      # Intervalle de temps pendant lequel les tentatives sont comptabilisées
             logout:
                 path: app_logout
                 # where to redirect after logout
@@ -40,8 +48,8 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/profile, roles: ROLE_USER }
 
 when@test:
     security:

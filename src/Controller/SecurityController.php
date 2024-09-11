@@ -18,6 +18,11 @@ class SecurityController extends AbstractController
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
+
+        if ($error && $error->getCode() === 429) {
+            // Personnaliser le message en cas de trop nombreuses tentatives
+            $this->addFlash('error', 'Trop de tentatives de connexion, veuillez réessayer plus tard.');
+        }
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 

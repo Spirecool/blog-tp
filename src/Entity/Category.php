@@ -72,4 +72,11 @@ class Category
 
         return $this;
     }
+
+    // Permet d'expliquer à la machine comment retranscrire les objets en chaîne de caractères
+
+    public function __toString()
+    {
+        return $this->name;
+    }
 }
