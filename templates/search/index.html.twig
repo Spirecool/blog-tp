@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Page de recherche {% endblock %}
+
+{% block body %}
+
+<div>
+    <form> 
+        <input type="search" name="search" placeholder="Recherchez un mot-clé..."/>
+        <button type="submit"> Recherchez </button>
+    </form>
+</div>
+
+<table>
+    {% for article in articles %}
+        <tr> 
+            <td> {{ article.id }} </td>
+            <td> {{ article.title }} </td>
+            <td> {{ article.content }} </td>
+            <td>
+                <a href="{{ path('app_article_show', {'id': article.id}) }}"> Show </a>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="4"> No record found</td>
+        </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}
+
